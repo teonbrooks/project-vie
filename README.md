@@ -1,2 +1,2 @@
-# project-vie
+# projet-vie
 A digital scrapbooking project
