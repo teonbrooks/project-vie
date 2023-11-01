@@ -27,7 +27,11 @@ Other options I'm considering are Keras and PyTorch. These will require building
 
 OCR is a submodule that provides an abstraction on top of different OCR options. The default for now will be Tesseract.
 [Tesseract](https://github.com/tesseract-ocr/tesseract) is an open-source library conceived at HP then later supported at Google.
-There are two supported implementations I'm considering using, [PyTesseract](https://github.com/madmaze/pytesseract) and [Tesseract.js](https://github.com/naptha/tesseract.js). For now, I will be using the PyTesseract library and supporting a backend that is Python-based.
+There are two supported implementations I'm considering using, [PyTesseract](https://github.com/madmaze/pytesseract) and [Tesseract.js](https://github.com/naptha/tesseract.js).
+
+For now, I will be using the PyTesseract library and supporting a backend that is Python-based. This also requires that you install the Tesseract binary:
+
+`brew install tesseract`
 
 Things Under consideration:
 
