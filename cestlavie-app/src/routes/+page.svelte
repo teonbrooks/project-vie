@@ -4,9 +4,21 @@
 </script>
 
 
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<h1>Vie: <em>it's your life</em></h1>
+<p>discovery and recommendations, curated by friends</p>
+<p></p>
 
-{#each names as title}
-    <Tix {title}/>
-{/each}
+<div class='sample'>
+    {#each names as title}
+        <Tix {title}/>
+    {/each}
+</div>
+
+<style>
+.sample {
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-flow: row wrap; */
+    column-gap: 30px;
+}
+</style>

@@ -23,6 +23,11 @@ Tix will three two potential input sources:
 SEG is a submodule that provides an abstraction on top of different segmentation options. The default for now will be [SegmentAnything](https://github.com/facebookresearch/segment-anything).
 Other options I'm considering are Keras and PyTorch. These will require building the model myself or using the model with a tutorial of the library. First step will be to get the submodule to work then iterate on it.
 
+Do some hand-curation with labelImg
+https://github.com/HumanSignal/labelImg
+
+Feel these bounding boxes into Keras
+
 ## OCR.py
 
 OCR is a submodule that provides an abstraction on top of different OCR options. The default for now will be Tesseract.
