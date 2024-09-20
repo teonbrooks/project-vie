@@ -1,73 +1,93 @@
 import numpy as np
-import pandas as pd
+# import pandas as pd
 from pathlib import Path
 import os.path as op
+import keras
+import keras_cv
+import numpy as np
+from keras_cv import bounding_box
+import os
+from keras_cv import visualization
+
+import matplotlib
+matplotlib.use('macosx')
+
 
 project_root = Path(op.join(op.expanduser('~'), 'codespace', 'projet-vie'))
 
+data_path = project_root / 'data'
 
-def backend_sam(ndarray):
-    from segment_anything import SamAutomaticMaskGenerator, sam_model_registry
+# Loading a pre-trained objection data model
+pretrained_model = keras_cv.models.YOLOV8Detector.from_preset(
+    "yolo_v8_m_pascalvoc", bounding_box_format="xywh"
+)
 
-    sam = sam_model_registry["default"](checkpoint= project_root / "vie" / 
-                                        "_utils" / "sam_vit_h_4b8939.pth" )
-    
-    # general code, returns "mps" on my system
-    # currently not working because of the floating point problem
-    # device = "cuda" if torch.cuda.is_available() else "mps" if torch.has_mps else "cpu"
-    # sam.to(device=device)
-    sam.to('cpu')
-    mask_generator = SamAutomaticMaskGenerator(sam)
-    masks = mask_generator.generate(ndarray)
+image = keras.utils.load_img(data_path / 'scrapbook_10.jpg')
+image = np.array(image)
 
-    return masks
+visualization.plot_image_gallery(
+    np.array([image]),
+    value_range=(0, 255),
+    rows=1,
+    cols=1,
+    scale=5,
+)
 
-def segment_collection(filename_collection, start=None, stop=None,
-                       backend='segment_anything', device = "cuda"):
+inference_resizing = keras_cv.layers.Resizing(
+    640, 640, pad_to_aspect_ratio=True, bounding_box_format="xywh"
+)
+image_batch = inference_resizing([image])
 
-    if op.splitext(filename_collection) == '.pdf':
-        import pdf2image
-
-        collection = pdf2image.convert_from_path(filename_collection,
-                                                 first_page=start,
-                                                 last_page=stop)
-    if backend == 'segment_anything':
-        segmentor = backend_sam
-    else:
-        NotImplemented('Only `segment_anything` has been implemented.')
-    
-    collection_segments = list()
-    for image in collection:
-        collection_segments.append(segmentor(image))
-    
-    return collection_segments
-
-
-
-def show_anns(anns):
-    if len(anns) == 0:
-        return
-    sorted_anns = sorted(anns, key=(lambda x: x['area']), reverse=True)
-    ax = plt.gca()
-    ax.set_autoscale_on(False)
-
-    img = np.ones((sorted_anns[0]['segmentation'].shape[0], sorted_anns[0]['segmentation'].shape[1], 4))
-    img[:,:,3] = 0
-    for ann in sorted_anns:
-        m = ann['segmentation']
-        color_mask = np.concatenate([np.random.random(3), [0.35]])
-        img[m] = color_mask
-    ax.imshow(img)
+class_ids = [
+    "Aeroplane",
+    "Bicycle",
+    "Bird",
+    "Boat",
+    "Bottle",
+    "Bus",
+    "Car",
+    "Cat",
+    "Chair",
+    "Cow",
+    "Dining Table",
+    "Dog",
+    "Horse",
+    "Motorbike",
+    "Person",
+    "Potted Plant",
+    "Sheep",
+    "Sofa",
+    "Train",
+    "Tvmonitor",
+    "Total",
+]
+class_mapping = dict(zip(range(len(class_ids)), class_ids))
 
 
 
-plt.figure(figsize=(20,20))
-plt.imshow(img)
-show_anns(temp)
-plt.axis('off')
-plt.show() 
+prediction_decoder = keras_cv.layers.NonMaxSuppression(
+    bounding_box_format="xywh",
+    from_logits=True,
+    # Decrease the required threshold to make predictions get pruned out
+    iou_threshold=0.2,
+    # Tune confidence threshold for predictions to pass NMS
+    confidence_threshold=0.5,
+)
+pretrained_model = keras_cv.models.YOLOV8Detector.from_preset(
+    "yolo_v8_m_pascalvoc",
+    bounding_box_format="xywh",
+    prediction_decoder=prediction_decoder,
+)
 
-plt.imshow()
-
-# https://keras.io/guides/keras_cv/object_detection_keras_cv/
-# could use pretrain module in keras for segmentation
+y_pred = pretrained_model.predict(image_batch)
+visualization.plot_bounding_box_gallery(
+    image_batch,
+    value_range=(0, 255),
+    rows=1,
+    cols=1,
+    y_pred=y_pred,
+    scale=5,
+    font_scale=0.7,
+    bounding_box_format="xywh",
+    class_mapping=class_mapping,
+)
