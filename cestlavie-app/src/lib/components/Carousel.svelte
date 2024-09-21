@@ -1,5 +1,5 @@
 <script>
-    import Carousel from 'svelte-carousel'
+    import Carousel from 'svelte-carousel';
     // ...
     export let images;
 </script>

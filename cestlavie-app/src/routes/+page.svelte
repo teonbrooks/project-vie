@@ -24,7 +24,7 @@
     <meta property="og:image:height" content={siteImageWidth} />
 </svelte:head>
 
-
+<p><em>pre-pre-pre-alpha</em></p>
 <h1>Vie: <em>it's your life</em></h1>
 <p>discovery and recommendations, curated by friends</p>
 <p></p>
