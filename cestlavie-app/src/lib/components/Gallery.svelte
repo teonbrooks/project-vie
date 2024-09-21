@@ -8,121 +8,40 @@
 </script>
 
 <article id="portfolio" class="panel">
-	<LayoutGrid>
-		{#each items as item}
-			<div>
-				<div class="pushpin tilted">
-					<div class="pinhead"></div>
-					<div class="pinbase"></div>
-					<div class="pinshaft"></div>
-					<div class="pinpoint"></div>
+	<!-- <LayoutGrid> -->
+	<div id="wrapper">
+		{#each items.slice(0, 12) as item}
+			<div class="cell">
+				<div>
+					<div class="pushpin tilted">
+						<div class="pinhead"></div>
+						<div class="pinbase"></div>
+						<div class="pinshaft"></div>
+						<div class="pinpoint"></div>
+					</div>
 				</div>
-				<div class="cell">
-					
-					<Cell>
-						<PortfolioCard {path} {item} />
-					</Cell>
-				</div>
+				<Cell>
+					<PortfolioCard {path} {item} width={"250px"} height={""}/>
+				</Cell>
 			</div>
 		{/each}
-	</LayoutGrid>
+	</div>
+	<!-- </LayoutGrid> -->
 </article>
 
 <style>
 	.cell {
-	  height: max-content;
-	  width: max-content;
 	  display: flex;
 	  justify-content: center;
 	  align-items: center;
-	  background-color: var(--mdc-theme-secondary, #333);
 	  color: var(--mdc-theme-on-secondary, #fff);
 	}
-	/* PUSH PIN */
-	.pushpin {
-	margin: 0 auto -15px auto;
-	position: relative;
-	width:20px;
-	height:35px;
-	z-index:1;
-	}
-	.pushpin.tilted {
-	-ms-transform:rotate(9deg);
-	-moz-transform:rotate(9deg);
-	-webkit-transform:rotate(9deg);
-	-o-transform:rotate(9deg);
-		transform:rotate(9deg);
-	}
-	.pinhead {
-		background: darkred;
-		width: 75%;
-		height: 20%;
-		border-radius: 100%;
-		position: relative;
-		left:12.5%;
-		top:0;
-	}
-	.pinhead:after {
-		content:'';
-		width: 100%;
-		height: 100%;
-		border-radius: 50%;
-		background: red;
-		position: absolute;
-		top: -30%;
-		left:0;
-	}
 
-	.pinbase {
-		background: darkred;
-		width: 100%;
-		height: 25%;
-		border-radius: 100%;
-		position: relative;
-		left:0;
-		top:30%;
-	}
-	.pinbase:after {
-		content:'';
-		width: 100%;
-		height: 100%;
-		border-radius: 50%;
-		background: red;
-		position: absolute;
-		top: -30%;
-		left:0;
-	}
-
-	.pinshaft {
-	background: darkred;
-	height: 30%;
-	width: 50%;
-	position: relative;
-	border-radius: 0 ;
-	top: -30%;
-	left: 25%;
-	}
-
-	.pinshaft:after {
-		content:'';
-		width: 100%;
-		height: 50%;
-		border-radius: 50%;
-		background: darkred;
-		position: absolute;
-		top: 75%;
-	}
-
-	.pinpoint {
-	display: block;
-	background: #999;
-	height: 70%;
-	width: 14%;
-	position: absolute;
-	border-radius: 0 0 20% 20%;
-	z-index: -50;
-	bottom: 0;
-	left: 43%;
-	}
+	#wrapper {
+		display: grid;
+		grid-template-columns: repeat(4, 2fr);
+		}
+	
+	@import './css/pushpin.css'
 
   </style>

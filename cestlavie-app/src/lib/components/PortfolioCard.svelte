@@ -9,6 +9,8 @@
 
 	export let path;
 	export let item;
+	export let width;
+	export let height;
 	const md = markdownit();
 	let open = false;
 </script>
@@ -17,7 +19,7 @@
 	<Content>
 		{#if item.filename}
 			<div class="image">
-				<Stub {path} {item} width={""} height={""}/>
+				<Stub {path} {item} {width} {height}/>
 			</div>
 		{/if}
 	</Content>
@@ -47,16 +49,7 @@
 			{#if item.filename}
 				<Stub {path} {item} width={""} height={""} />
 			{/if}
-			{#if item.organization}
-				<h1>{item.organization}</h1>
-			{/if}
-			{#if item.title}
-				<h2>{item.title}</h2>
-			{/if}
-			{#if item.timespan}
-				<p><em>{item.timespan}</em></p>
-			{/if}
-			{#if item.filename}
+			{#if item.description}
 				<p>{@html md.render(item.description)}</p>
 			{/if}
 		</div>
@@ -69,10 +62,4 @@
 		place-items: center;
 	}
 
-	h1 {
-		font-size: x-large;
-	}
-	h2 {
-		font-size: large;
-	}
 </style>

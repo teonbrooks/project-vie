@@ -7,7 +7,7 @@
 }
 
 main {
-	width: 100%;
+	width: 75%;
 	/* max-width: 48rem; */
 	/* max-width: 42rem; */
 	margin: 6rem auto;
@@ -18,7 +18,7 @@ main {
 	display: grid;
 	grid-template-columns: 100%;
 	grid-template-rows: auto 1fr auto;
-	min-height: 100vh;
+	/* min-height: 100vh; */
 }
 
 /* img {

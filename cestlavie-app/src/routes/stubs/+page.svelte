@@ -17,22 +17,7 @@
 
 <h1>Ticket Stubs</h1>   
 
-<div id='frame'>
+<div>
 	<!-- <Carousel {images} /> -->
 	<Gallery {path} {items} />
 </div>
-
-<style>
-	div#frame {
-    background: url(images/corkboard.jpg) no-repeat center fixed;
-    background-position: right 100px;
-	background-size: 100% 100%;
-	}
-
-	h1 {
-  	height: 3rem;
-  	position: sticky;
-  	top: 0;
-	}
-
-</style>
