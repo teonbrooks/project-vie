@@ -3,7 +3,7 @@
 	import { siteTitle, siteURL } from '$lib/config.js';
 	// use default svelte-material-ui css
 	import '$lib/../../node_modules/svelte-material-ui/bare.css';
-	// import Header from '$lib/components/Header.svelte';
+	import Header from '$lib/components/Header.svelte';
 	// import Footer from '$lib/components/Footer.svelte';
 	import { currentPage, isMenuOpen } from '$lib/assets/js/store';
 	import { navItems } from '$lib/config';
@@ -51,7 +51,7 @@
 	actual contents will show up.
 -->
 <div class="layout" class:open={$isMenuOpen}>
-	<!-- <Header /> -->
+	<Header />
 	{#key data.path}
 		<main id="main" tabindex="-1" in:fade|global={transitionIn} out:fade|global={transitionOut}>
 			<slot />
