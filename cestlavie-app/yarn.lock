@@ -3247,10 +3247,9 @@ supports-color@^7.1.0:
   dependencies:
     has-flag "^4.0.0"
 
-svelte-carousel@^1.0.25:
+svelte-carousel@vadimkorr/svelte-carousel#pull/142/head:
   version "1.0.25"
-  resolved "https://registry.yarnpkg.com/svelte-carousel/-/svelte-carousel-1.0.25.tgz#0a109455009f449242b17e3c213cbe7e9c37ef35"
-  integrity sha512-vR/AbGYwlh3fgWaB5PJg+iqZFvoVCJq4JWdmlXvPtdG9TLlKJWBcoiKlMZt3MnFF7AqNW46tOH/O+uVMWQzyWQ==
+  resolved "https://codeload.github.com/vadimkorr/svelte-carousel/tar.gz/a299747c626d559ad02dde0a1463243bb07935df"
   dependencies:
     easy-reactive "1.0.4"
 

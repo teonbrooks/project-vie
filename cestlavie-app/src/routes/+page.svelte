@@ -33,7 +33,7 @@
     <!-- {#each names as title}
         <Tix {title}/>
     {/each} -->
-    <img class="stub" src="data/labelling/images/stubs/b6fc8982-scrapbook_26-stub_06.jpg" alt="image of the Arc de Triomphe">
+    <img class="stub" src="data/labelling/images/stubs/b6fc8982-scrapbook_26-stub_06.jpg" alt="ticket stub of the Arc de Triomphe">
 </div>
 
 <style>
@@ -44,7 +44,4 @@
     column-gap: 30px;
 }
 
-.stub {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
 </style>

@@ -1,7 +1,6 @@
 <script>
-	import { mdiLink, mdiClose } from '@mdi/js';
-	import Card, { Content, Actions, ActionButtons, ActionIcons } from '@smui/card';
-	import Button, { Label } from '@smui/button';
+	import { mdiClose } from '@mdi/js';
+	import Card, { Content } from '@smui/card';
 	import IconButton, { Icon } from '@smui/icon-button';
 	import Dialog, { Content as DContent } from '@smui/dialog';
 	import markdownit from 'markdown-it';
@@ -15,29 +14,25 @@
 	let open = false;
 </script>
 
-<Card>
-	<Content>
-		{#if item.filename}
-			<div class="image">
-				<Stub {path} {item} {width} {height}/>
-			</div>
-		{/if}
-	</Content>
-	<Actions style="align-items:end">
-		<ActionButtons>
-			<Button on:click={() => (open = true)}>
-				<Label>Details</Label>
-			</Button>
-		</ActionButtons>
-		<ActionIcons>
-			<IconButton on:click={() => window.open(item.website)} title="Open Link">
-				<Icon tag="svg" viewBox="0 0 24 24">
-					<path fill="currentColor" d={mdiLink} />
-				</Icon>
-			</IconButton>
-		</ActionIcons>
-	</Actions>
-</Card>
+<div>
+	<div class="pushpin tilted">
+		<div class="pinhead"></div>
+		<div class="pinbase"></div>
+		<div class="pinshaft"></div>
+		<div class="pinpoint"></div>
+	</div>
+	<div class="stub card">
+		<Card on:click={() => (open = true)}>
+			<Content>
+				{#if item.filename}
+					<div class="image">
+						<Stub {path} {item} {width} {height}/>
+					</div>
+				{/if}
+			</Content>
+		</Card>
+	</div>
+</div>
 <Dialog bind:open sheet aria-describedby="sheet-content">
 	<DContent id="sheet-content">
 		<IconButton action="close" class="material-icons">
@@ -57,9 +52,14 @@
 </Dialog>
 
 <style>
+	@import './css/pushpin.css';
+
 	.image {
 		display: grid;
 		place-items: center;
 	}
 
+	.card:hover {
+		cursor: pointer;
+	}
 </style>

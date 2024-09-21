@@ -1,6 +1,5 @@
 <script>
-	import LayoutGrid, { Cell } from '@smui/layout-grid';
-	import PortfolioCard from './PortfolioCard.svelte';
+	import StubCard from './StubCard.svelte';
 
 	export let items = [];
 	export let path;
@@ -10,19 +9,9 @@
 <article id="portfolio" class="panel">
 	<!-- <LayoutGrid> -->
 	<div id="wrapper">
-		{#each items.slice(0, 12) as item}
+		{#each items as item}
 			<div class="cell">
-				<div>
-					<div class="pushpin tilted">
-						<div class="pinhead"></div>
-						<div class="pinbase"></div>
-						<div class="pinshaft"></div>
-						<div class="pinpoint"></div>
-					</div>
-				</div>
-				<Cell>
-					<PortfolioCard {path} {item} width={"250px"} height={""}/>
-				</Cell>
+				<StubCard {path} {item} width={"100px"} height={""}/>
 			</div>
 		{/each}
 	</div>
@@ -39,9 +28,7 @@
 
 	#wrapper {
 		display: grid;
-		grid-template-columns: repeat(4, 2fr);
-		}
-	
-	@import './css/pushpin.css'
-
-  </style>
+		grid-template-columns: repeat(4, 1fr);
+		row-gap: 50px;
+	}
+</style>

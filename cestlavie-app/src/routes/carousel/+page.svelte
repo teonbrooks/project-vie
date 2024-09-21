@@ -14,4 +14,4 @@
 
 <h1>Scrapbook</h1>   
 
-<!-- <Carousel {images} /> -->
+<Carousel {images} />
