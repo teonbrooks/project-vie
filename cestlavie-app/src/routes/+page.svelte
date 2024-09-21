@@ -1,9 +1,6 @@
 <script>
     import { siteTitle, siteDescription, siteImage, siteImageWidth, siteAuthor, siteURL, faviconImage } from '$lib/config';    
-    import Tix from '$lib/components/Tix.svelte';
-    
-    export let names = ["a", "b", "c"];
-    
+
 </script>
     
 <svelte:head>
@@ -29,12 +26,9 @@
 <p>discovery and recommendations, curated by friends</p>
 <p></p>
 
-<div class='sample'>
-    <!-- {#each names as title}
-        <Tix {title}/>
-    {/each} -->
+<button class='sample' on:click={() => window.open("/stubs", "_self")}>
     <img class="stub" src="data/labelling/images/stubs/b6fc8982-scrapbook_26-stub_06.jpg" alt="ticket stub of the Arc de Triomphe">
-</div>
+</button>
 
 <style>
 .sample {
@@ -44,4 +38,13 @@
     column-gap: 30px;
 }
 
+button {
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+button:hover {
+    cursor: pointer;
+}
 </style>
