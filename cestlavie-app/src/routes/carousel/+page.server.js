@@ -6,7 +6,6 @@ export const load = async ({ url, fetch }) => {
 
     var pages = Object.keys(import.meta.glob('/static/data/labelling/images/*.jpg'));
     pages = pages.map(page => page.slice(8))
-    console.log(pages)
     
     const path = '/data/labelling/images/stubs'
 
