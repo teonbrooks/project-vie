@@ -24,7 +24,7 @@
 
 <style>
 	div#frame {
-    background: url(corkboard.jpg) no-repeat center fixed;
+    background: url(images/corkboard.jpg) no-repeat center fixed;
     background-position: right 100px;
 	background-size: 100% 100%;
 	}
