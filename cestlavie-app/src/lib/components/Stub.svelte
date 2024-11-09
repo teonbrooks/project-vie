@@ -5,7 +5,7 @@
     export let height;
 
 </script>
-<img src="{path}/{item.filename}"
+<img loading="lazy" src="{path}/{item.filename}"
      alt='ticket stub for {item.filename}'
         width={width}
         height={height}

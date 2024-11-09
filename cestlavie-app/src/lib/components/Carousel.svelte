@@ -9,7 +9,7 @@
 >
   {#each images as src}
     <div class="img-container">
-      <img {src} alt="nature" />
+      <img loading="lazy" {src} alt="nature" />
     </div>
   {/each}
 </Carousel>

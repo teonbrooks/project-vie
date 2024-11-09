@@ -21,7 +21,10 @@ export const navItems = [
 		title: 'Stubs',
 		route: '/stubs'
 	}, {
-	title: 'Vie',
-	route: '/vie'
-},
+		title: 'Tags',
+		route: '/tags'
+	}, {
+		title: 'Vie',
+		route: '/vie'
+	},
 ]
