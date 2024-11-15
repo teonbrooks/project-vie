@@ -1,5 +1,6 @@
 <!-- This is the global layout file; it "wraps" every page on the site. (Or more accurately: is the parent component to every page component on the site.) -->
 <script>
+	import "../app.css";
 	import { siteTitle, siteURL } from '$lib/config.js';
 	// use default svelte-material-ui css
 	import '$lib/../../node_modules/svelte-material-ui/bare.css';

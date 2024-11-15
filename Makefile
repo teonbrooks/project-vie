@@ -13,7 +13,7 @@ endif
 
 original_images=$(wildcard cestlavie-app/static/images/originals/*.jpg cestlavie-app/static/images/originals/**/*.jpg)
 stripped_images=$(subst originals,exif_stripped, $(original_images))
-thumb_images=$(subst originals,thumbs, $(original_images))
+thumb_images=$(subst originals,thumbnails, $(original_images))
 full_images=$(subst originals,full, $(original_images))
 thumb_webp_images=$(subst jpg,webp, $(thumb_images))
 full_webp_images=$(subst jpg,webp, $(full_images))
@@ -26,41 +26,41 @@ cestlavie-app/static/images/exif_stripped/%.jpg: cestlavie-app/static/images/ori
 optimize-images: $(thumb_images) $(full_images) $(thumb_webp_images) $(full_webp_images)
 .PHONY: optimize-images
 
-cestlavie-app/static/images/thumbs/%.jpg: cestlavie-app/static/images/exif_stripped/%.jpg
-> mkdir -p cestlavie-app/static/images/thumbs/stubs
+cestlavie-app/static/images/thumbnails/%.jpg: cestlavie-app/static/images/exif_stripped/%.jpg
+> mkdir -p cestlavie-app/static/images/thumbnails/stubs
 > convert $< -resize 633x474 -strip $@
 > jpegoptim -sq $@
 
-cestlavie-app/static/images/full/%.jpg: cestlavie-app/static/images/exif_stripped/%.jpg
-> mkdir -p cestlavie-app/static/images/full/stubs
+cestlavie-app/static/images/full_res/%.jpg: cestlavie-app/static/images/exif_stripped/%.jpg
+> mkdir -p cestlavie-app/static/images/full_res/stubs
 # > convert $< -resize 1688x1264 -strip $@
 > convert $< -strip $@
 > jpegoptim -sq $@
 
-cestlavie-app/static/images/thumbs/%.webp: cestlavie-app/static/images/exif_stripped/%.jpg
-> mkdir -p cestlavie-app/static/images/full/stubs
+cestlavie-app/static/images/thumbnails/%.webp: cestlavie-app/static/images/exif_stripped/%.jpg
+> mkdir -p cestlavie-app/static/images/full_res/stubs
 > cwebp $< -q 75 -z 6 -resize 633 0 -o $@
 
-cestlavie-app/static/images/full/%.webp: cestlavie-app/static/images/exif_stripped/%.jpg
-> mkdir -p cestlavie-app/static/images/full/stubs
+cestlavie-app/static/images/full_res/%.webp: cestlavie-app/static/images/exif_stripped/%.jpg
+> mkdir -p cestlavie-app/static/images/full_res/stubs
 > cwebp $< -q 75 -z 6 -o $@
 
 cestlavie-app/static/images/exif_stripped/stubs/%.jpg: cestlavie-app/static/images/originals/stubs/%.jpg
 > mkdir -p cestlavie-app/static/images/exif_stripped/stubs
 > exiftool -all= -o $@ $<
 
-cestlavie-app/static/images/thumbs/stubs/%.jpg: cestlavie-app/static/images/exif_stripped/stubs/%.jpg
-> mkdir -p cestlavie-app/static/images/thumbs/stubs
+cestlavie-app/static/images/thumbnails/stubs/%.jpg: cestlavie-app/static/images/exif_stripped/stubs/%.jpg
+> mkdir -p cestlavie-app/static/images/thumbnails/stubs
 > convert $< -resize 633x474 -strip $@
 
-cestlavie-app/static/images/full/stubs/%.jpg: cestlavie-app/static/images/exif_stripped/stubs/%.jpg
-> mkdir -p cestlavie-app/static/images/full/stubs
+cestlavie-app/static/images/full_res/stubs/%.jpg: cestlavie-app/static/images/exif_stripped/stubs/%.jpg
+> mkdir -p cestlavie-app/static/images/full_res/stubs
 > convert $< -strip $@
 
-cestlavie-app/static/images/thumbs/stubs/%.webp: cestlavie-app/static/images/exif_stripped/stubs/%.jpg
-> mkdir -p cestlavie-app/static/images/full/stubs
+cestlavie-app/static/images/thumbnails/stubs/%.webp: cestlavie-app/static/images/exif_stripped/stubs/%.jpg
+> mkdir -p cestlavie-app/static/images/full_res/stubs
 > cwebp $< -q 75 -z 6 -resize 633 0 -o $@
 
-cestlavie-app/static/images/full/stubs/%.webp: cestlavie-app/static/images/exif_stripped/stubs/%.jpg
-> mkdir -p cestlavie-app/static/images/full/stubs
+cestlavie-app/static/images/full_res/stubs/%.webp: cestlavie-app/static/images/exif_stripped/stubs/%.jpg
+> mkdir -p cestlavie-app/static/images/full_res/stubs
 > cwebp $< -q 75 -z 6 -o $@

@@ -7,9 +7,11 @@
 <Carousel
   let:loaded
 >
-  {#each images as src}
+  {#each images as src, imageIndex (src)}
     <div class="img-container">
-      <img loading="lazy" {src} alt="nature" />
+      {#if loaded.includes(imageIndex)}
+        <img loading="lazy" {src} alt="nature" />
+      {/if}
     </div>
   {/each}
 </Carousel>
